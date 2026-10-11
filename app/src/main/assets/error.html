@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Нет соединения</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 20px; background: #e9edf5; color: #1a2240; font-family: system-ui, sans-serif; }
+  .card { width: 100%; max-width: 400px; background: #fff; border-radius: 18px; padding: 24px; box-shadow: 0 10px 40px rgba(20,30,80,.14); }
+  h1 { margin: 0 0 8px; font-size: 22px; }
+  p { margin: 0 0 16px; color: #6b7694; line-height: 1.45; }
+  button { width: 100%; padding: 13px; border: 0; border-radius: 12px; font-size: 16px; font-weight: 600; margin-bottom: 10px; }
+  .main { background: #3454d1; color: #fff; }
+  .alt { background: #e3e9f8; color: #1a2240; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Нет соединения</h1>
+    <p>Не удалось открыть сервер. Проверьте, что сервер запущен на компьютере, а телефон подключён к интернету или к той же Wi-Fi сети. Если адрес туннеля поменялся, введите новый.</p>
+    <button class="main" onclick="AndroidApp.retry()">Повторить</button>
+    <button class="alt" onclick="AndroidApp.changeServer()">Сменить адрес сервера</button>
+  </div>
+</body>
+</html>

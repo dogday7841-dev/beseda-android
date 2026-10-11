@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Беседка</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 20px; background: #e9edf5; color: #1a2240; font-family: system-ui, sans-serif; }
+  .card { width: 100%; max-width: 400px; background: #fff; border-radius: 18px; padding: 24px; box-shadow: 0 10px 40px rgba(20,30,80,.14); }
+  h1 { margin: 0 0 6px; font-size: 24px; }
+  p { margin: 0 0 16px; color: #6b7694; line-height: 1.45; }
+  label { display: block; font-weight: 600; margin-bottom: 6px; }
+  input { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid #dde3ef; background: #f6f8fc; font-size: 16px; margin-bottom: 8px; }
+  .hint { font-size: 13px; margin-bottom: 14px; }
+  .err { color: #c2334d; min-height: 20px; font-size: 14px; margin-bottom: 8px; }
+  button { width: 100%; padding: 13px; border: 0; border-radius: 12px; background: #3454d1; color: #fff; font-size: 16px; font-weight: 600; }
+</style>
+</head>
+<body>
+  <form class="card" id="f">
+    <h1>Беседка</h1>
+    <p>Введите адрес сервера мессенджера. Его показывает окно сервера на компьютере.</p>
+    <label for="addr">Адрес сервера</label>
+    <input id="addr" type="text" inputmode="url" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="192.168.0.11:3000">
+    <div class="hint">Дома это адрес вида <b>192.168.0.11:3000</b>. Через туннель это адрес вида <b>что-то.trycloudflare.com</b>.</div>
+    <div class="err" id="err"></div>
+    <button type="submit">Подключиться</button>
+  </form>
+<script>
+  var addr = document.getElementById("addr");
+  try { addr.value = window.AndroidApp ? AndroidApp.getServer() : ""; } catch (e) {}
+  document.getElementById("f").onsubmit = function (e) {
+    e.preventDefault();
+    document.getElementById("err").textContent = "";
+    var ok = false;
+    try { ok = window.AndroidApp && AndroidApp.saveServer(addr.value); } catch (e) {}
+    if (!ok) document.getElementById("err").textContent = "Не получилось. Проверьте адрес и попробуйте ещё раз.";
+  };
+</script>
+</body>
+</html>
